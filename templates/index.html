@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Security Surveillance</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        section {
+            position: relative;
+            text-align: center;
+            padding: 50px 0;
+        }
+        .logo {
+            max-width: 150px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding-top: 20px; /* Adjusted padding-top */
+        }
+        .text-box {
+            margin-bottom: 30px;
+        }
+        h2 {
+            font-size: 36px;
+            color: #333;
+        }
+        .thumb {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px; /* Added margin-top */
+        }
+        .thumb li {
+            margin: 0 10px;
+        }
+        .thumb img {
+            width: 150px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .thumb img:hover {
+            transform: scale(1.1);
+        }
+        .camera-icon {
+            margin-bottom: 10px;
+        }
+        .cam-text {
+            font-size: 18px;
+            color: #333;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 5px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .thumb li:hover .cam-text {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <header>
+            <a href="#"><img src="{{ url_for('static', filename='cctv3.png') }}" class="logo" alt="Logo"></a>
+        </header>
+        <div class="container">
+            <div class="text-box">
+                <h2>Complete Network Security under your grasp</h2>
+            </div>
+        </div>
+    </section>
+    <ul class="thumb">
+        {% for cam_id in range(cams) %}
+        <li>
+            <a href="{{ url_for('VIDEO', cam_id=cam_id) }}">
+                <img src="{{ url_for('static', filename='cctv4.jpg') }}" alt="CAM {{ cam_id + 1 }}" class="camera-icon">
+                <br>
+                <span class="cam-text">CAM {{ cam_id + 1 }}</span>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
